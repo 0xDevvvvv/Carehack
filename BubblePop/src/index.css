@@ -1,0 +1,359 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bubble Pop Adventure - Accessible Game Design System */
+
+@layer base {
+  :root {
+    /* Game Background */
+    --game-bg: 220 25% 12%;
+    --game-bg-high-contrast: 0 0% 0%;
+    
+    /* Bubble Colors - High Contrast Safe */
+    --bubble-pink: 330 90% 70%;
+    --bubble-blue: 200 90% 70%;
+    --bubble-green: 120 90% 70%;
+    --bubble-yellow: 50 95% 75%;
+    --bubble-purple: 280 85% 75%;
+    --bubble-orange: 25 95% 70%;
+    
+    /* High Contrast Bubble */
+    --bubble-contrast: 50 100% 80%;
+    
+    /* Game UI */
+    --game-text: 0 0% 100%;
+    --game-text-secondary: 220 15% 85%;
+    --score-bg: 220 30% 20%;
+    --settings-bg: 220 25% 15%;
+    --settings-overlay: 220 25% 8%;
+    
+    /* Interactive Elements */
+    --button-primary: 200 95% 60%;
+    --button-primary-hover: 200 95% 55%;
+    --button-secondary: 220 20% 25%;
+    --button-secondary-hover: 220 20% 30%;
+    
+    /* Effects */
+    --glow-blue: 200 100% 70%;
+    --glow-pink: 330 100% 75%;
+    --pop-burst: 50 100% 70%;
+    
+    /* Standard tokens */
+    --background: var(--game-bg);
+    --foreground: var(--game-text);
+    --primary: var(--button-primary);
+    --primary-foreground: 0 0% 100%;
+    --secondary: var(--button-secondary);
+    --secondary-foreground: var(--game-text);
+    --muted: var(--settings-bg);
+    --muted-foreground: var(--game-text-secondary);
+    --accent: var(--bubble-blue);
+    --accent-foreground: 0 0% 100%;
+    --border: 220 20% 30%;
+    --input: 220 20% 25%;
+    --ring: var(--glow-blue);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* High Contrast Mode */
+  .high-contrast {
+    --background: var(--game-bg-high-contrast);
+    --bubble-pink: var(--bubble-contrast);
+    --bubble-blue: var(--bubble-contrast);
+    --bubble-green: var(--bubble-contrast);
+    --bubble-yellow: var(--bubble-contrast);
+    --bubble-purple: var(--bubble-contrast);
+    --bubble-orange: var(--bubble-contrast);
+  }
+}
+
+@layer components {
+  /* Game Components */
+  .game-container {
+    @apply w-full h-screen overflow-hidden relative;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(220 30% 8%));
+  }
+  
+  .bubble {
+    @apply absolute rounded-full cursor-pointer select-none;
+    @apply transition-all duration-300 ease-out;
+    @apply border-4 border-white/20;
+    width: 80px;
+    height: 80px;
+    background: hsl(330 90% 70%); /* Fallback color to ensure visibility */
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 4px 16px rgba(255, 255, 255, 0.3);
+    z-index: 10;
+  }
+  
+  .bubble.small {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .bubble.large {
+    width: 120px;
+    height: 120px;
+  }
+  
+  .bubble.highlighted {
+    @apply ring-4 ring-primary;
+    box-shadow: 
+      0 0 30px hsl(var(--glow-blue)),
+      0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 4px 16px rgba(255, 255, 255, 0.3);
+    animation: pulse-glow 1s ease-in-out infinite alternate;
+  }
+  
+  .bubble.popping {
+    animation: pop-burst 0.5s ease-out forwards;
+  }
+  
+  .bubble-pink {
+    background: radial-gradient(circle at 30% 30%, 
+      hsl(var(--bubble-pink)), 
+      hsl(330 70% 50%));
+  }
+  
+  .bubble-blue {
+    background: radial-gradient(circle at 30% 30%, 
+      hsl(var(--bubble-blue)), 
+      hsl(200 70% 50%));
+  }
+  
+  .bubble-green {
+    background: radial-gradient(circle at 30% 30%, 
+      hsl(var(--bubble-green)), 
+      hsl(120 70% 50%));
+  }
+  
+  .bubble-yellow {
+    background: radial-gradient(circle at 30% 30%, 
+      hsl(var(--bubble-yellow)), 
+      hsl(50 80% 55%));
+  }
+  
+  .bubble-purple {
+    background: radial-gradient(circle at 30% 30%, 
+      hsl(var(--bubble-purple)), 
+      hsl(280 65% 55%));
+  }
+  
+  .bubble-orange {
+    background: radial-gradient(circle at 30% 30%, 
+      hsl(var(--bubble-orange)), 
+      hsl(25 80% 50%));
+  }
+  
+  .score-display {
+    @apply fixed top-6 left-6 px-6 py-3 rounded-2xl;
+    @apply text-2xl font-bold;
+    background: hsl(var(--muted));
+    border: 2px solid hsl(var(--border));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  
+  .settings-button {
+    @apply fixed top-6 right-6 px-6 py-3 rounded-2xl;
+    @apply text-xl font-semibold;
+    @apply transition-all duration-200;
+    background: hsl(var(--primary));
+    border: 2px solid hsl(var(--border));
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+  
+  .settings-button:hover {
+    background: hsl(var(--primary));
+    opacity: 0.9;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+  }
+  
+  .settings-panel {
+    @apply fixed inset-0 z-50 flex items-center justify-center;
+    @apply p-6;
+    background: hsl(var(--background) / 0.95);
+    backdrop-filter: blur(8px);
+  }
+  
+  .settings-content {
+    @apply bg-muted rounded-3xl p-8 w-full max-w-md;
+    @apply border-2 border-border;
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.6);
+  }
+  
+  .settings-title {
+    @apply text-3xl font-bold mb-6 text-center;
+  }
+  
+  .setting-group {
+    @apply mb-6;
+  }
+  
+  .setting-label {
+    @apply block text-lg font-semibold mb-2;
+  }
+  
+  .setting-input {
+    @apply w-full p-3 rounded-xl bg-input border-2 border-border;
+    @apply text-lg;
+  }
+  
+  .setting-select {
+    @apply w-full p-3 rounded-xl bg-input border-2 border-border;
+    @apply text-lg appearance-none cursor-pointer;
+  }
+  
+  .setting-checkbox {
+    @apply w-6 h-6 mr-3;
+  }
+  
+  .close-button {
+    @apply w-full py-4 rounded-xl text-xl font-semibold;
+    @apply transition-all duration-200;
+    background: hsl(var(--secondary));
+    border: 2px solid hsl(var(--border));
+  }
+  
+  .close-button:hover {
+    background: hsl(var(--secondary));
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+  
+  .voice-status {
+    @apply fixed bottom-6 left-1/2 transform -translate-x-1/2;
+    @apply px-6 py-3 rounded-2xl;
+    @apply text-lg font-semibold;
+    background: hsl(var(--primary));
+    border: 2px solid hsl(var(--border));
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .animate-float-up {
+    animation: float-up 8s linear infinite;
+  }
+  
+  .animate-pop-burst {
+    animation: pop-burst 0.5s ease-out forwards;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 1s ease-in-out infinite alternate;
+  }
+  
+  @keyframes float-up {
+    from {
+      transform: translateY(100vh);
+    }
+    to {
+      transform: translateY(-200px);
+    }
+  }
+  
+  @keyframes bob {
+    from {
+      transform: translateX(-5px);
+    }
+    to {
+      transform: translateX(5px);
+    }
+  }
+  
+  @keyframes pop-burst {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.3);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(2);
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 
+        0 0 20px hsl(var(--glow-blue)),
+        0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+    to {
+      box-shadow: 
+        0 0 40px hsl(var(--glow-blue)),
+        0 8px 32px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
