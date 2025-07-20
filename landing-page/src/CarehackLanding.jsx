@@ -1,5 +1,5 @@
 import React from "react";
-import "./CareHackLanding.css"; // Import the external CSS file
+import "./CarehackLanding.css"; // Import the external CSS file
 
 export default function CareHackLanding() {
   const games = [
