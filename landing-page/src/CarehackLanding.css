@@ -1,0 +1,107 @@
+/* Reset and global full-screen layout */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+/* Main wrapper that fills the screen */
+.carehack-container {
+  background: linear-gradient(to bottom right, #0f0c29, #302b63, #24243e);
+  color: white;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 40px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Keeps footer at bottom */
+  box-sizing: border-box;
+}
+
+/* Header */
+h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+/* Subtitle paragraph */
+.subtitle {
+  color: #ccc;
+  font-size: 1.2rem;
+  max-width: 90vw;
+  margin-bottom: 40px;
+}
+
+/* Game card grid layout */
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 20px;
+  margin-top: 20px;
+  box-sizing: border-box;
+}
+
+/* Each card link */
+.game-card {
+  background: #1c1a2d;
+  border: 1px solid #3a3760;
+  border-radius: 16px;
+  padding: 20px;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease, background 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.game-card:hover {
+  background: #2d2a4d;
+  transform: translateY(-5px);
+}
+
+/* Card title */
+.game-card h2 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+/* Card link text */
+.game-card p {
+  font-size: 0.9rem;
+  color: #87cefa;
+  word-wrap: break-word;
+}
+
+/* Footer stays near bottom */
+footer {
+  margin-top: 40px;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* Mobile responsive tweaks */
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .game-card h2 {
+    font-size: 1.2rem;
+  }
+
+  .game-card p {
+    font-size: 0.8rem;
+  }
+}
