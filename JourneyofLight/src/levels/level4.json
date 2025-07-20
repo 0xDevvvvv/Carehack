@@ -1,0 +1,25 @@
+{
+  "level": 4,
+  "name": "The Turn",
+  "hint": "Some pieces need to be turned to fit.",
+  "waypoints": [
+    [-8, 0.9, 0],
+    [-4, 0.9, 0],
+    [0, 0.9, 0],
+    [0, 0.9, 4],
+    [0, 0.9, 8]
+  ],
+  "path": [
+    { "type": "block", "position": [-8, 0.25, 0], "rotation": [0, 0, 0] },
+    { "type": "block", "position": [-4, 0.25, 0], "rotation": [0, 0, 0] },
+    { "type": "block", "position": [0, 0.25, 8], "rotation": [0, 0, 0] }
+  ],
+  "inventory": [
+    { "type": "block", "count": 1 },
+    { "type": "corner", "count": 1 }
+  ],
+  "solution": [
+    { "type": "block", "position": [0, 0.25, 4], "rotation": [0, 0, 0] },
+    { "type": "corner", "position": [0, 0.25, 0], "rotation": [0, 1.57, 0] }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "level": 6,
+  "name": "Winding Way",
+  "hint": "Plan your path carefully, step by step.",
+  "waypoints": [
+    [-8, 0.9, -4],
+    [-8, 0.9, 0],
+    [-4, 0.9, 0],
+    [-4, 0.9, 4],
+    [0, 0.9, 4],
+    [4, 0.9, 4]
+  ],
+  "path": [
+    { "type": "block", "position": [-8, 0.25, -4], "rotation": [0, 0, 0] },
+    { "type": "block", "position": [4, 0.25, 4], "rotation": [0, 0, 0] }
+  ],
+  "inventory": [
+    { "type": "corner", "count": 2 },
+    { "type": "block", "count": 1 }
+  ],
+  "solution": [
+    { "type": "corner", "position": [-8, 0.25, 0], "rotation": [0, 0, 0] },
+    { "type": "corner", "position": [-4, 0.25, 4], "rotation": [0, 1.57, 0] },
+    { "type": "block", "position": [-4, 0.25, 0], "rotation": [0, 0, 0] },
+    { "type": "block", "position": [0, 0.25, 4], "rotation": [0, 0, 0] }
+  ]
+}
